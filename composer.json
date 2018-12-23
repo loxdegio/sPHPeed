@@ -2,7 +2,7 @@
     "name": "lorenzo/sphpeed",
     "description": "Simple, fast and lightweight MVC PHP framework",
     "type": "library",
-    "version" : "dev-master",
+    "version" : "dev",
     "require": {
         "nikic/fast-route": "^1.3",
         "neat/http": "^0.1.0",
