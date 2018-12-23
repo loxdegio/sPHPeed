@@ -131,13 +131,16 @@ class App {
     public function run() {
         $dispatcher = $this->container->get(Dispatcher::class);
         
-        // Fetch method and URI from somewhere
         /**
          * @var Neat\Http\Request
          */
         $request = $this->container->get(Request::class);
+        /**
+         * @var Neat\Http\Response
+         */
         $response = new Response();
         
+        // Fetch method and URI from Request
         $routeInfo = $dispatcher->dispatch($request->method(), $request->url());
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
@@ -151,10 +154,17 @@ class App {
                 $handler = explode('::', $routeInfo[1]);
                 $vars = $routeInfo[2];
                 $vars['request'] = $request;
-                $vars['response'] = $response;
+                if(isset($vars['response']))
+                    $vars['response'] = $response;
                 $obj = $this->container->get($handler[0]);
                 $obj->setContainer($this->container);
-                call_user_func('sPHPeed\\Controller\\'.$handler[1], $obj, $vars);
+                $return = call_user_func('sPHPeed\\Controller\\'.$handler[1], $obj, $vars);
+                if(isset($return)) {
+                    if($return instanceof Response)
+                        $response = $return;
+                    else
+                        $response->setBody($return);
+                }
                 break;
         }
 
