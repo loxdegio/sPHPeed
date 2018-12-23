@@ -29,7 +29,7 @@ Extending your own controller it would be included the ability to render Twig te
 
 ```
 
-class MyController {
+class MyController extends sPHPeed\Controller {
 	
 	public function genericHandlerMethod(Neat\Http\Request $request, $var1, $var2) {
 		return $this->twig->render('mytemplate.twig.html');
