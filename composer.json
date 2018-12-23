@@ -1,0 +1,30 @@
+{
+    "name": "lorenzo/sphpeed",
+    "description": "Simple, fast and lightweight MVC PHP framework",
+    "type": "library",
+    "version" : "master",
+    "require": {
+        "nikic/fast-route": "^1.3",
+        "neat/http": "^0.1.0",
+        "twig/twig": "^2.6",
+        "monolog/monolog": "^1.24",
+        "php-di/php-di": "^6.0",
+        "doctrine/orm": "^2.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "loxdegio",
+            "email": "loxdegio@hotmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "sPHPeed\\" : "src/"
+        }
+    }
+}
